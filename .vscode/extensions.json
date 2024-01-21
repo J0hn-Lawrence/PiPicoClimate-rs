@@ -1,0 +1,11 @@
+{
+    // List of recommended extensions
+    "recommendations": [
+      "tamasfe.even-better-toml",
+      "rust-lang.rust-analyzer",
+      "serayuzgur.crates",
+      "probe-rs.probe-rs-debugger",
+      
+    ]
+  }
+  
