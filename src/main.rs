@@ -89,7 +89,7 @@ async fn main(_spawner: Spawner) {
     let mut display = Builder::st7789(di)
         // width and height are switched on purpose because of the orientation
         .with_display_size(240, 240)
-        // this orientation applies for the Display HAT Mini by Pimoroni
+        // this orientation applies for the Enviro + Pack by Pimoroni
         .with_orientation(mipidsi::Orientation::Portrait(false))
         .with_invert_colors(mipidsi::ColorInversion::Inverted)
         .init(&mut Delay, Some(rst))
