@@ -4,10 +4,9 @@ This project uses Raspberry Pi Pico W ([`rp2040`][1]) and a Pimoroni sensor boar
 
 DISCLAIMER: Parts of this README.md are copied from [here][26], an excellent repository to get started with Embassy and Rust on the Raspberry Pi Pico.
 
-It includes all of the [`knurling-rs`][4] tooling ([`defmt`][5], [`defmt-rtt`][5], [`panic-probe`][5], [`flip-link`][6],
-[`probe-run`][7]) to enhance the embedded development process.
+It includes all of the [`knurling-rs`][4] tooling ([`defmt`][5], [`defmt-rtt`][5], [`panic-probe`][5], [`flip-link`][6] to enhance the embedded development process.
 
-The default [`cargo`][8] runner is configured as [`probe-run`][7], so you can build, flash and run your firmware _with_ output from the device via a [`probe-rs`][9] compatible debug probe with the command:
+The default [`cargo`][8] runner is configured as [`probe-rs`][9], so you can build, flash and run your firmware _with_ output from the device via a [`probe-rs`][9] compatible debug probe with the command:
 
 ```shell
 cargo run
@@ -56,17 +55,23 @@ If you want to use a different runner with your debugger (e.g., [`cargo-embed`][
     rustup target add thumbv6m-none-eabi
     ```
 
-3. Install [`probe-run`][7]
+3. Install [`probe-rs`][9]
+
+    Please see [here](https://probe.rs/docs/getting-started/installation/) for the most up-to-date installation instructions.
 
     ```shell
     # Install Linux Dependencies
     # For Ubuntu
-    sudo apt install -y libusb-1.0-0-dev libudev-dev
-    # For Fedora
-    sudo dnf install -y libusb1
+    sudo apt install -y pkg-config libusb-1.0-0-dev libftdi1-dev libudev-dev libssl-dev
+    sudo apt purge libusb-dev
 
-    # Install `probe-run`
-    cargo install probe-run
+    # For Fedora
+    sudo dnf install libusbx-devel libftdi-devel libudev-devel openssl-devel
+
+
+    # Install `probe-rs`
+    cargo install probe-rs
+    # Note: Try 'cargo install probe-rs --locked --features cli' if you encounter an error with the above command
 
     # Install `udev` Rules and Reload
     sudo curl https://probe.rs/files/69-probe-rs.rules -o /etc/udev/rules.d/69-probe-rs.rules
@@ -94,7 +99,7 @@ You can use a second Raspberry Pi Pico (a Pico W is also fine) as a so called Pi
 4. Copy the `picoprobe.uf2` onto the Raspberry Pi Pico
 5. Firmware will be flashed to the Raspberry Pi Pico and it will disconnect itself
 
-Whenever you now plug in the Raspberry Pi Pico, it will automatically connect to your computer as a Picoprobe. You can now use it as a debug probe with [`probe-run`][7]. This is the recommended way to flash your firmware and is automatically configured in this project.
+Whenever you now plug in the Raspberry Pi Pico, it will automatically connect to your computer as a Picoprobe. You can now use it as a debug probe with [`probe-run`][9]. This is the recommended way to flash your firmware and is automatically configured in this project.
 
 ### Hardware Setup
 
@@ -169,7 +174,6 @@ DEFMT_LOG=error cargo run --release
 - [Embassy][2]
 - [Knurling-RS `defmt`][5]
 - [Knurling-RS `flip-link`][6]
-- [Knurling-RS `probe-run`][7]
 - [Probe-RS `cargo-embed`][10]
 - [Probe-RS `probe-rs-debugger`][11]
 - [Raspberry Pi Pico `elf2uf2`][12]
@@ -197,7 +201,6 @@ DEFMT_LOG=error cargo run --release
 [4]: https://github.com/knurling-rs/app-template
 [5]: https://github.com/knurling-rs/defmt
 [6]: https://github.com/knurling-rs/flip-link
-[7]: https://github.com/knurling-rs/probe-run
 [8]: https://doc.rust-lang.org/cargo/
 [9]: https://probe.rs/docs/getting-started/probe-setup/
 [10]: https://github.com/probe-rs/cargo-embed

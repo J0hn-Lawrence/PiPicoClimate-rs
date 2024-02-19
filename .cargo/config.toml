@@ -1,17 +1,24 @@
 [build]
-target = "thumbv6m-none-eabi"
+target = "thumbv6m-none-eabi" # set the target to the correct one for RP2040
 
 [target.thumbv6m-none-eabi]
-runner = "probe-run --chip RP2040"  # "elf2uf2-rs -d"
+runner = "probe-rs run --chip RP2040" # Setup the runner for RP2040
 rustflags = [
-    "-C", "link-arg=--nmagic",
-    "-C", "link-arg=-Tlink.x",
-    "-C", "link-arg=-Tlink-rp.x",
-    "-C", "link-arg=-Tdefmt.x",
-    "-C", "linker=flip-link",
-    "-C", "inline-threshold=5",
-    "-C", "no-vectorize-loops",
+    "-C",
+    "link-arg=--nmagic",
+    "-C",
+    "link-arg=-Tlink.x",
+    "-C",
+    "link-arg=-Tlink-rp.x",
+    "-C",
+    "link-arg=-Tdefmt.x",
+    "-C",
+    "linker=flip-link",
+    "-C",
+    "inline-threshold=5",
+    "-C",
+    "no-vectorize-loops",
 ]
 
 [env]
-DEFMT_LOG = "trace"
+DEFMT_LOG = "trace" # Set loglevel for defmt crate
