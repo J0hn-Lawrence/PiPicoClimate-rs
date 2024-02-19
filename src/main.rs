@@ -90,7 +90,7 @@ async fn main(_spawner: Spawner) {
         // width and height are switched on purpose because of the orientation
         .with_display_size(240, 240)
         // this orientation applies for the Display HAT Mini by Pimoroni
-        .with_orientation(mipidsi::Orientation::Portrait(true))
+        .with_orientation(mipidsi::Orientation::Portrait(false))
         .with_invert_colors(mipidsi::ColorInversion::Inverted)
         .init(&mut Delay, Some(rst))
         .unwrap();
